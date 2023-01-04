@@ -53,3 +53,7 @@ So i decided to focus on `gameplay` now (doge)
 Any advice about what I wrote or going to write is welcomed, and hopefully there would be many issues and pull requests come in😊.
 
 # Have a nice day 🍀
+
+# Credits ♥
+![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)
+https://jb.gg/OpenSourceSupport
