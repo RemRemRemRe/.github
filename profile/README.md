@@ -10,13 +10,6 @@ I may wrote them with ue5-main branch only, and did not do testing or packaging 
 
 So, keep that in mind🤗. 
 
-# Module shared right now
-- [Common](https://github.com/RemRemRemRe/Common.git)
-- [MyBlank](https://github.com/RemRemRemRe/MyBlank.git)
-- [DetailCustomizationUtilities](https://github.com/RemRemRemRe/DetailCustomizationUtilities.git)
-- [WidgetComponent](https://github.com/RemRemRemRe/WidgetComponent.git)
-- [WidgetComponentEditor](https://github.com/RemRemRemRe/WidgetComponentEditor.git)
-
 # A bit about myself
 I start to actually work with unreal for about 3 years now (5/15/2022) and hoping to become more experienced with Unreal and C++.
 
