@@ -1,5 +1,4 @@
-Hi there, thanks for taking a look at this.
-Here are my coding toys that I build up on my spare time.
+Hi there, nice to meet you, here are some building blocks for unreal engine games. Hope it would be useful to you.
 
 # Reminder
 The code only work with latest 5.x branch, design or implementation may change dramatically at any time, no testing or packaging be done.
@@ -7,8 +6,6 @@ I might be the only active user who's using it and maintaining it ATM.
 
 ## Cpp version
 [c++ 20 is required](https://docs.unrealengine.com/latest/en-US/build-configuration-for-unreal-engine/)
-
-So, keep that in mind🤗.
 
 # A bit about myself
 I start to actually work with unreal from 5/15/2022, and hoping to become more experienced with Unreal and C++.
@@ -24,6 +21,8 @@ That's the reason why I'm focusing on `gameplay` now (🤪)
 Any advice for things in this organization is welcomed, and hopefully there would be many issues and pull requests come in😊.
 
 # Have a nice day 🍀
+
+Thanks for your time!
 
 # Credits ♥
 ![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)
