@@ -1,0 +1,25 @@
+# 标题格式，{version} 会被替换成纯净版本号 (例如 1.0.0)
+title: "🥳 {version}"
+
+# 将 commit type 前缀映射到带 emoji 的分类标题
+categories:
+  New: "✨ New Features"
+  Improvement: "🚀 Improvements"
+  Fixed: "🐛 Bug Fixes"
+  Changed: "🔄 Changes"
+  Removed: "🗑️ Removed"
+  Misc: "📝 Miscellaneous"
+  # 可以添加任何自定义 type，比如 docs: "📚 Documentation"
+
+# 所有未匹配的提交都归入这里
+default_category: "💬 Other Changes"
+
+# 输出分类的顺序（可选，不指定则按字典序）
+order:
+  - "✨ New Features"
+  - "🚀 Improvements"
+  - "🐛 Bug Fixes"
+  - "🔄 Changes"
+  - "🗑️ Removed"
+  - "📝 Miscellaneous"
+  - "💬 Other Changes"

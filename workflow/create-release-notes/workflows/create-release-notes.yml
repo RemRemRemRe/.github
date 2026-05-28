@@ -1,0 +1,48 @@
+# 文件：.github/workflow/create-release-notes/workflows/create-release-notes.yml
+# 用途：支持数据驱动的发布说明生成工作流
+name: Create Release Notes Workflow
+
+on:
+  workflow_call:
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 签出调用者仓库代码（包含 tag 历史和可能的覆盖配置）
+      - name: Checkout caller repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          path: caller
+
+      # 2. 稀疏签出公共仓库的必要文件（脚本 + 默认配置）
+      - name: Checkout shared files (script & default config)
+        uses: actions/checkout@v6
+        with:
+          repository: RemRemRemRe/.github
+          path: shared
+          token: ${{ secrets.GITHUB_TOKEN }}
+          sparse-checkout: |
+            .github/workflow/create-release-notes/scripts/generate_release_notes.py
+            .github/workflow/create-release-notes/release-notes-config.yml
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.14'
+
+      - name: Run release notes generator
+        working-directory: caller
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          pip install pyyaml
+          python3 ../shared/.github/workflow/create-release-notes/scripts/generate_release_notes.py \
+            --default-config ../shared/.github/workflow/create-release-notes/release-notes-config.yml
