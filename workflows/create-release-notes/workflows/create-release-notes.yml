@@ -1,4 +1,4 @@
-# 文件：.github/workflow/create-release-notes/workflows/create-release-notes.yml
+# 文件：.github/workflows/create-release-notes/workflows/create-release-notes.yml
 # 用途：支持数据驱动的发布说明生成工作流
 name: Create Release Notes Workflow
 
@@ -28,8 +28,8 @@ jobs:
           path: shared
           token: ${{ secrets.GITHUB_TOKEN }}
           sparse-checkout: |
-            .github/workflow/create-release-notes/scripts/generate_release_notes.py
-            .github/workflow/create-release-notes/release-notes-config.yml
+            .github/workflows/create-release-notes/scripts/generate_release_notes.py
+            .github/workflows/create-release-notes/release-notes-config.yml
           sparse-checkout-cone-mode: false
 
       - name: Setup Python
@@ -44,5 +44,5 @@ jobs:
           TAG: ${{ github.ref_name }}
         run: |
           pip install pyyaml
-          python3 ../shared/.github/workflow/create-release-notes/scripts/generate_release_notes.py \
-            --default-config ../shared/.github/workflow/create-release-notes/release-notes-config.yml
+          python3 ../shared/.github/workflows/create-release-notes/scripts/generate_release_notes.py \
+            --default-config ../shared/.github/workflows/create-release-notes/release-notes-config.yml
