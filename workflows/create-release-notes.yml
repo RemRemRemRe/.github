@@ -1,5 +1,6 @@
 # 文件：.github/workflows/create-release-notes.yml
 # 用途：支持数据驱动的发布说明生成工作流
+# 参考用法： https://github.com/RemRemRemRe/RemCommon/blob/main/.github/workflows/create-release.yml
 name: Create Release Notes Workflow
 
 on:
