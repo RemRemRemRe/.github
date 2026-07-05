@@ -41,10 +41,21 @@ def load_config(default_config_path):
 def get_tag_message(tag):
     """返回 annotated tag 的完整消息，轻量标签返回空"""
     try:
-        return subprocess.check_output(
-            ["git", "tag", "-l", "--format=%(contents)", tag],
+        # 先检查标签类型：commit 表示轻量标签，tag 表示 annotated
+        object_type = subprocess.check_output(
+            ["git", "tag", "-l", "--format=%(objecttype)", tag],
             text=True
         ).strip()
+        if object_type == "commit":
+            return ""   # 轻量标签直接视为无消息
+        elif object_type == "tag":
+            # annotated 标签，返回完整内容
+            return subprocess.check_output(
+                ["git", "tag", "-l", "--format=%(contents)", tag],
+                text=True
+            ).strip()
+        else:
+            return ""
     except subprocess.CalledProcessError:
         return ""
 
