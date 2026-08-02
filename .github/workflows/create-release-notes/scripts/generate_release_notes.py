@@ -60,25 +60,25 @@ def get_tag_message(tag):
 
 
 def get_previous_tag(current_tag):
-    """获取按版本排序的前一个 tag"""
+    """获取按版本排序的前一个 tag（升序中紧邻 current_tag 之前的那个）"""
     try:
         all_tags = subprocess.check_output(
-            ["git", "tag", "--sort=-v:refname"], text=True
+            ["git", "tag", "--sort=v:refname"], text=True
         ).strip().split("\n")
+        prev = ""
         for t in all_tags:
-            if t and t != current_tag:
-                return t
+            if t == current_tag:
+                break
+            if t:
+                prev = t
+        return prev
     except subprocess.CalledProcessError:
-        pass
-    return ""
+        return ""
 
 
 def get_commits(prev_tag):
     """获取自 prev_tag 以来的所有提交 (short_hash, full_hash, title)"""
-    if prev_tag:
-        cmd = ["git", "log", "--pretty=format:%h %H %s", f"{prev_tag}..HEAD"]
-    else:
-        cmd = ["git", "log", "--pretty=format:%h %H %s"]
+    cmd = ["git", "log", "--pretty=format:%h %H %s", f"{prev_tag}..HEAD"]
     output = subprocess.check_output(cmd, text=True, stderr=subprocess.DEVNULL)
     commits = []
     for line in output.split("\n"):
@@ -167,6 +167,9 @@ def main():
     # 3. 生成正文
     if tag_msg:
         notes = tag_msg
+    elif not prev_tag:
+        # 首次发布：没有前一个 tag，生成简单说明而不是全部历史
+        notes = config.get("initial_release_note", "🎉 Initial release")
     else:
         categories = config.get("categories")
         default_cat = config.get("default_category")
@@ -182,10 +185,7 @@ def main():
             order = list(categories.values()) + [default_cat]
 
         commits = get_commits(prev_tag)
-        if not commits:
-            notes = ""
-        else:
-            notes = generate_notes(commits, categories, default_cat, order, repo)
+        notes = generate_notes(commits, categories, default_cat, order, repo) if commits else ""
 
     # 4. 尾部链接
     link = build_changelog_link(tag, prev_tag, repo)

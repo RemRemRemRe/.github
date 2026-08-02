@@ -1,6 +1,9 @@
 # 标题格式，{version} 会被替换成纯净版本号 (例如 1.0.0)
 title: "🥳 {version}"
 
+# 首次发布（没有前一个 tag）时使用的简单说明
+initial_release_note: "🎉 Initial release"
+
 # 将 commit type 前缀映射到带 emoji 的分类标题
 categories:
   New: "✨ New Features"
